@@ -15,6 +15,8 @@ import org.springframework.retry.RecoveryCallback;
 import org.springframework.retry.RetryCallback;
 import org.springframework.retry.RetryContext;
 import org.springframework.retry.RetryListener;
+import org.springframework.retry.annotation.AnnotationAwareRetryOperationsInterceptor;
+import org.springframework.retry.interceptor.RetryOperationsInterceptor;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -55,6 +57,8 @@ public class SchedulingTestRetryTask {
 
     /**
      * 编程的方式 测试 retry
+     * {@link AnnotationAwareRetryOperationsInterceptor#getDelegate(java.lang.Object, java.lang.reflect.Method)}
+     * {@link RetryOperationsInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)}
      */
     @ConditionalOnExpression("#{'true'.equals(environment['programmingSpringRetry'])}")
     @Configuration

@@ -30,7 +30,15 @@ public class RetryTestService {
     private AtomicInteger invokeCount = new AtomicInteger(1);
 
 
-    @Retryable(value = RemoteAccessException.class, backoff = @Backoff(DELAY_TIME), maxAttempts = 2, recover = "recover")
+    @Retryable(value = RemoteAccessException.class,
+            // 退避策略 休息 5秒继续
+            backoff = @Backoff(DELAY_TIME),
+
+            // 重试策略 最大一个两次 包含第一次
+            maxAttempts = 2,
+            // 兜底方案 全部失败 调用当前类中的兜底方法
+            recover = "recover"
+    )
     public Integer retryTestService() {
         int count = invokeCount.getAndIncrement();
         String url = "http://localhost:8080/unstableApi/500";
