@@ -52,7 +52,7 @@ public class RetryTestService {
      * @param e
      */
     @Recover
-    public int recover(RemoteAccessException e) {
+    public Integer recover(RemoteAccessException e) {
         String stack = Arrays.toString(Thread.currentThread().getStackTrace());
         stack = stack.replaceAll(",", "\n");
         log.info("recover is begin : 堆栈 \n {}", stack);
