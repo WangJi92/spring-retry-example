@@ -46,8 +46,8 @@ public class SchedulingTestRetryTask {
     @ConditionalOnExpression("#{'true'.equals(environment['aopSpringRetry'])}")
     @Configuration
     public class AopSpringRetry {
+
         @Scheduled(fixedRate = 30000)
-        @ConditionalOnExpression("#{'false'.equals(environment['programmingRetry'])}")
         public void retryTestService() {
             int responseBody = retryTestService.retryTestService();
             log.info("retryTestService response result is {}", responseBody);

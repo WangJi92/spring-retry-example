@@ -44,7 +44,6 @@ public class SchedulingTestStateFullRetryTask {
     @Configuration
     public class AopStateFullRetry {
         @Scheduled(fixedRate = 30000)
-        @ConditionalOnExpression("#{'false'.equals(environment['programmingRetry'])}")
         public void retryTestService() {
             TextMessageDto messageDto = new TextMessageDto();
             messageDto.setMessageId("001");
