@@ -5,12 +5,14 @@ To make processing more robust and less prone to failure, it sometimes helps to 
 
 code demo:  [https://github.com/WangJi92/spring-retry-example](https://github.com/WangJi92/spring-retry-example)
 ### 遇到的问题
+
 最近做项目需要进行同步数据(定时任务),一定要同步成功，不然对于业务会有影响，偶发性的会出现调用接口失败，失败并不是特别多，大概的流程如下: 
-1、循环的进行远程调用，同步数据。
-2、记录一下调用失败的记录。
-3、休眠一段时间
-4、继续循环调用失败的记录
-5、如果在调用失败、通过钉钉高级 人工二次调用进行修复。
+* 1、循环的进行远程调用，同步数据。
+* 2、记录一下调用失败的记录。
+* 3、休眠一段时间
+* 4、继续循环调用失败的记录
+* 5、如果在调用失败、通过钉钉告警 人工二次调用进行修复。
+
 ```java
 try {
     // 1、foreach do remote invoke
