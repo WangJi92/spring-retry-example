@@ -199,6 +199,7 @@ spring retry 中有状态我这么理解,多次调用不直接的在当前线程
 - [guava-retry](https://github.com/rholder/guava-retrying)
 - [http://kriszhang.com/spring-retry/](http://kriszhang.com/spring-retry/)
 - [https://blog.csdn.net/a742172349/article/details/106199939](https://blog.csdn.net/a742172349/article/details/106199939)
+- [Spring retry有状态重试](https://blog.csdn.net/qq330983778/article/details/112758737)
 
 
 
