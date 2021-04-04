@@ -104,6 +104,9 @@ programmingStateFullRetry=false
     <version>2.0.0</version>
 </dependency>
 ```
+## spring retry 框架的理解
+[spring retry 框架的理解 博客](spirng-retry-understand.md)
+
 ## 参考文档
 * [spring retry](https://github.com/spring-projects/spring-retry)
 
