@@ -121,7 +121,7 @@ Integer responseBody = retryTemplate.execute(new RetryCallback<Integer, RemoteAc
 log.info("programmingRetry retryTestService response result is {}", responseBody);
 ```
 如下图所示: 执行业务调用 回调 RetryCallback，如果发生了异常，通过RetryPolicy 查看是否可能重试，如果可以重试进行退避休眠策略，如果不行 进行兜底方案调用。
-![image.png](spring-retry-image.png)
+![image](https://user-images.githubusercontent.com/20874972/113512460-585ca900-9597-11eb-948f-d5461f266b94.png)
 ### 常用注解
 幕布：[https://mubu.com/doc/5Oq1BHmS4Ba#m](https://mubu.com/doc/5Oq1BHmS4Ba#m)
 
