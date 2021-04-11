@@ -104,6 +104,24 @@ programmingStateFullRetry=false
     <version>2.0.0</version>
 </dependency>
 ```
+withAttemptTimeLimiter 会导致执行业务的线程和调用线程非一个线程执行，会带来事务问题、线程上下文传递问题
+还有一个问题 guava-retrying 对于最新版本的guava 没有支持 [https://github.com/rholder/guava-retrying/issues/66](https://github.com/rholder/guava-retrying/issues/66)
+使用的时候一定要小心啦，默认使用最新版本的guava,不推荐使用。
+
+```java
+ // RetryerBuilder 构建重试实例 guavaRetryer,可以设置重试源且可以支持多个重试源，可以配置重试次数或重试超时时间，以及可以配置等待时间间隔
+Retryer<Integer> guavaRetryer = RetryerBuilder.<Integer>newBuilder()
+        //设置异常重试源 根据异常 也可以 retryIfResult 根据结果
+        .retryIfExceptionOfType(RemoteAccessException.class)
+
+        // 【这里将会使用多线程执行(other 线程执行、会导致事务问题、线程上下文传递问题 一定要小心)】 还有这个框架 这个属性高版本不支持了.
+        .withAttemptTimeLimiter(new FixedAttemptTimeLimit<Integer>(1, TimeUnit.MINUTES))
+        //设置等待间隔时间
+        .withWaitStrategy(WaitStrategies.fixedWait(5, TimeUnit.SECONDS))
+        //设置最大重试次数
+        .withStopStrategy(StopStrategies.stopAfterAttempt(2))
+        .build();
+```
 ## spring retry 框架的理解
 [spring retry 框架的理解 博客](spirng-retry-understand.md)
 
